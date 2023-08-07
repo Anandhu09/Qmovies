@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Playlists</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+
+        }
+        section {
+            padding: 40px;
+            background-color: #f9f9f9;
+            /* text-align: center; */
+
+        }
+        .section1 {
+            background-color: #f1c40f;
+            height: 40vh;
+            width: 100%;
+        }
+        .section2 {
+            background-color: #3498db;
+            height: 40vh;
+        }
+        .publicRow , .privateRow {
+            width: 100%;
+            height: 95%;
+            overflow-x: auto;
+            overflow-y: auto;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .publicRowContainer {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding-left: 20px;
+            margin-bottom:4px ;
+        }
+        #shareButton {
+            padding: 10px 20px;
+            margin-left: 20px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #shareButton:hover {
+            background-color: #2980b9;
+        }
+    </style>
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+
+
+<body>
+    <nav class="navbar">
+        <b><a class="navbar-brand" href="./index.html">QMOVIES</a></b>
+    </nav>
+    <header>
+        <h1>Playlists</h1>
+    </header>
+
+    <section class="section1">
+        <div class="publicRowContainer">
+            <h2>Public Playlist</h2>
+            <button id="shareButton">Share</button>
+        </div>
+        <div class="publicRow" id="publicData"></div>
+    </section>
+
+    <section class="section2" id="section2">
+        <h2>Private Playlist</h2>
+        <div class="privateRow" id="privateData"></div>
+    </section>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const section2 = document.getElementById('section2');
+            const shareButton = document.getElementById('shareButton');
+            const username = localStorage.getItem('username');
+
+            if (username) {
+                section2.style.display = 'block'; 
+                shareButton.style.display = 'block';
+            } else {
+                section2.style.display = 'none'; 
+                shareButton.style.display = 'none';
+            }
+        });
+    </script>
+    <script  src="./config/index.js"></script>
+    <script src="/frontend/js/navbar.js"></script>
+    <script src="/frontend/js/playlist.js"></script>
+    
+</body>
+</html>

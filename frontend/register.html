@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <b><a class="navbar-brand" href="index.html">QMOVIES</a></b>
+
+    </nav>
+
+
+    <div class="hero-image-one">
+
+        <form id="form_register" class="form">
+            <h2 class="title">REGISTER</h2>
+            <div class="form-control">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your Name" value="">
+            </div>
+            <div class="form-control">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter your Email ID" value="">
+            </div>
+            <div class="form-control">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter password" value="">
+                <p class="helper-text">Password must be at least 6 characters length</p>
+            </div>
+            <div class="form-control" style="margin-bottom: 30px;">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Enter confirm Password" value="">
+            </div>
+            <input class="login-button" type="submit"value="Register to QMovies"></button>
+            <p class="secondary-action">Already have an account? <a class="link" href="login.html">Login Here</a></p>
+        </form>
+
+    </div>
+
+    <footer>
+        <div class="containerBottom">© QMOVIES BETA VERSION 2023</div>
+    </footer>
+
+
+    <script src="/frontend/js/register.js"></script>
+    <script src="/frontend/js/navbar.js"></script>
+</body>
+
+</html>
