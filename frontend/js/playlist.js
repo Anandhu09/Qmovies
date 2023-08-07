@@ -64,6 +64,7 @@ const handlePrivate = (event) => {
         })
     } else {
         alert("Login to add movies to private playlist")
+        window.location.reload()
     }
 }
 
@@ -116,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const uQueryParam = urlParams.get('u');
 
         fetch(`${config.backendEndpoint}/playlist/public?u=${uQueryParam}`)
-            .then((res) => res.json()) // Parse the response data as JSON
+            .then((res) => res.json()) 
             .then((data) => {
                 data.publicPlaylists.forEach(element => {
                     addMovieToDOMPublic(element, element.Title, element.Director, element.Poster)
@@ -136,9 +137,8 @@ document.addEventListener('click', function (event) {
         document.getElementById("privateData").innerHTML=""
         document.getElementById("publicData").innerHTML=""
         handlePrivate(event);
-        // fetchData()
     }
-    // window.location.reload()
+
 });
 
 document.addEventListener('click', function (event) {
@@ -148,10 +148,9 @@ document.addEventListener('click', function (event) {
         document.getElementById("privateData").innerHTML=""
         document.getElementById("publicData").innerHTML=""
         handlePublic(event);
-        // fetchData()
 
     }
-    // window.location.reload()
+
 });
 
 
