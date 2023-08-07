@@ -5,7 +5,7 @@ require('dotenv').config();
 let server;
 const  port= process.env.PORT;
 const url = process.env.URL
-
+console.log(url)
 mongoose 
 .connect(url)
 .then(() => {

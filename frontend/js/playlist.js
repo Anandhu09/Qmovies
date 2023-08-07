@@ -48,9 +48,19 @@ const handlePrivate = (event) => {
             },
             body: JSON.stringify({ Id: event.target.id })
         }).then((res) => res.json()).then((data) => {
-            data.privatePlaylists.forEach(element => {
-                addMovieToDOMprivate(element, element.Title, element.Director, element.Poster)
-            })
+            
+                data.privatePlaylists.forEach(element => {
+                    addMovieToDOMprivate(element, element.Title, element.Director, element.Poster)
+                });
+            
+            
+            if (data.publicPlaylists.length === 0) {
+                document.getElementById("publicData").innerHTML = `<div style="padding-left:20px;color:red"><h2>No Public Playlist found</h2></div>`
+            } else {
+                data.publicPlaylists.forEach(element => {
+                    addMovieToDOMPublic(element, element.Title, element.Director, element.Poster);
+                });
+            }
         })
     } else {
         alert("Login to add movies to private playlist")
@@ -66,9 +76,17 @@ const handlePublic = (event) => {
         },
         body: JSON.stringify({ Id: event.target.id })
     }).then((res) => res.json()).then((data) => {
-        data.privatePlaylists.forEach(element => {
-            addMovieToDOMprivate(element, element.Title, element.Director, element.Poster)
+        // if(!data.publicPlaylists){}
+        data.publicPlaylists.forEach(element => {
+            addMovieToDOMPublic(element, element.Title, element.Director, element.Poster);
         })
+        if (data.privatePlaylists.length === 0) {
+            document.getElementById("privateData").innerHTML = `<div style="color:red"><h2>No Private Playlist found</h2></div>`
+        } else {
+            data.privatePlaylists.forEach(element => {
+                addMovieToDOMprivate(element, element.Title, element.Director, element.Poster)
+            });
+        }
     })
 }
 
@@ -98,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const uQueryParam = urlParams.get('u');
 
         fetch(`${config.backendEndpoint}/playlist/public?u=${uQueryParam}`)
-            .then((res) => res.json()) 
+            .then((res) => res.json()) // Parse the response data as JSON
             .then((data) => {
                 data.publicPlaylists.forEach(element => {
                     addMovieToDOMPublic(element, element.Title, element.Director, element.Poster)
@@ -114,16 +132,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('click', function (event) {
     if (event.target.matches('.addToPrivate')) {
+        
+        document.getElementById("privateData").innerHTML=""
+        document.getElementById("publicData").innerHTML=""
         handlePrivate(event);
-        window.location.reload()
+        // fetchData()
     }
+    // window.location.reload()
 });
 
 document.addEventListener('click', function (event) {
     if (event.target.matches('.removeFromPrivate')) {
+
+       
+        document.getElementById("privateData").innerHTML=""
+        document.getElementById("publicData").innerHTML=""
         handlePublic(event);
-        window.location.reload()
+        // fetchData()
+
     }
+    // window.location.reload()
 });
 
 
