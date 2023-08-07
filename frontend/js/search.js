@@ -42,7 +42,7 @@ const addMovieToDOM = (title, description, image) => {
 };
 
 const addToPlaylist = async () => {
-    fetch("http://localhost:8082/v1/auth/playlist", {
+    fetch(`${config.backendEndpoint}/playlist`, {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',

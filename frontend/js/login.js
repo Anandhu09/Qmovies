@@ -22,6 +22,7 @@ form.addEventListener('submit', (event) => {
         else{
         persistLogin(data.user.name, data.tokens.access.token , data.user.email)
         window.location.href ="profile.html"
+        alert("Login Successful")
         }
     })
     .catch(error => {

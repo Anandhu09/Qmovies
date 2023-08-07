@@ -1,6 +1,6 @@
 const errorHandler = (err, req, res, next) => {
     let { statusCode, message } = err;
-
+console.log(err,"pppp")
     res.locals.errorMessage = err.message;
     const response = {
         code: statusCode,

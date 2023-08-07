@@ -8,7 +8,6 @@ const fetchData = () => {
                     addMovieToDOMPublic(element, element.Title, element.Director, element.Poster);
                 });
             }
-
             if (localStorage.getItem("username")) {
                 if (data.privatePlaylists.length === 0) {
                     document.getElementById("privateData").innerHTML = `<div style="color:red"><h2>No Private Playlist found</h2></div>`
@@ -48,12 +47,12 @@ const handlePrivate = (event) => {
             },
             body: JSON.stringify({ Id: event.target.id })
         }).then((res) => res.json()).then((data) => {
-            
-                data.privatePlaylists.forEach(element => {
-                    addMovieToDOMprivate(element, element.Title, element.Director, element.Poster)
-                });
-            
-            
+
+            data.privatePlaylists.forEach(element => {
+                addMovieToDOMprivate(element, element.Title, element.Director, element.Poster)
+            });
+
+
             if (data.publicPlaylists.length === 0) {
                 document.getElementById("publicData").innerHTML = `<div style="padding-left:20px;color:red"><h2>No Movies found in Public Playlist</h2></div>`
             } else {
@@ -117,12 +116,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const uQueryParam = urlParams.get('u');
 
         fetch(`${config.backendEndpoint}/playlist/public?u=${uQueryParam}`)
-            .then((res) => res.json()) 
+            .then((res) => res.json())
             .then((data) => {
                 data.publicPlaylists.forEach(element => {
                     addMovieToDOMPublic(element, element.Title, element.Director, element.Poster)
                 });
-
             })
             .catch((error) => {
                 console.log('Error fetching data:', error);
@@ -133,9 +131,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('click', function (event) {
     if (event.target.matches('.addToPrivate')) {
-        
-        document.getElementById("privateData").innerHTML=""
-        document.getElementById("publicData").innerHTML=""
+        document.getElementById("privateData").innerHTML = ""
+        document.getElementById("publicData").innerHTML = ""
         handlePrivate(event);
     }
 
@@ -143,10 +140,8 @@ document.addEventListener('click', function (event) {
 
 document.addEventListener('click', function (event) {
     if (event.target.matches('.removeFromPrivate')) {
-
-       
-        document.getElementById("privateData").innerHTML=""
-        document.getElementById("publicData").innerHTML=""
+        document.getElementById("privateData").innerHTML = ""
+        document.getElementById("publicData").innerHTML = ""
         handlePublic(event);
 
     }
@@ -156,6 +151,9 @@ document.addEventListener('click', function (event) {
 
 const shareButton = document.getElementById('shareButton');
 shareButton.addEventListener('click', () => {
+    const currentURL1 = window.location.href;
+console.log(currentURL1);
+
     const currentURL = `${config.frontendEndpoint}/playlist.html?u=${localStorage.getItem("username")}`;
     const tempInput = document.createElement('input');
     tempInput.value = currentURL;
