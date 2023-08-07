@@ -15,13 +15,13 @@ const ValidateMove = validate(authValidation.move)
 
 router.get("/playlist/public/", authController.getPlaylist);
 
-router.get("/playlist/:e", authController.getPlaylist);
-
 router.post("/register",validateRegisterRequest,authController.register)
 
 router.post("/login",validateLoginRequest,authController.login)
 
 router.post("/playlist",auth,validateMovie,authController.addMovieToPlaylist)
+
+router.get("/playlist/:e", authController.getPlaylist);
 
 router.post("/movePrivate",auth,ValidateMove,authController.MoveToPrivate)
 
