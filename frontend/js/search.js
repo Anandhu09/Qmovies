@@ -60,9 +60,12 @@ const addToPlaylist = async () => {
             alert("Login to add movie to playlist");
             window.location.href="/frontend/login.html"
         }
-        else {
+        else if(data.status==201){
             alert("Added to Playlist Successfully");
             window.location.reload()
+        }
+        else{
+            alert("Something Went Wrong")
         }
     })
     .catch(error => {

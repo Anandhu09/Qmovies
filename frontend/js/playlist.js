@@ -151,10 +151,8 @@ document.addEventListener('click', function (event) {
 
 const shareButton = document.getElementById('shareButton');
 shareButton.addEventListener('click', () => {
-    const currentURL1 = window.location.href;
-console.log(currentURL1);
-
-    const currentURL = `${config.frontendEndpoint}/playlist.html?u=${localStorage.getItem("username")}`;
+    const URL = window.location.href;
+    const currentURL = `${URL}?u=${localStorage.getItem("username")}`;
     const tempInput = document.createElement('input');
     tempInput.value = currentURL;
     document.body.appendChild(tempInput);
