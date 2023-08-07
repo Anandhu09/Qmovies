@@ -55,7 +55,7 @@ const handlePrivate = (event) => {
             
             
             if (data.publicPlaylists.length === 0) {
-                document.getElementById("publicData").innerHTML = `<div style="padding-left:20px;color:red"><h2>No Public Playlist found</h2></div>`
+                document.getElementById("publicData").innerHTML = `<div style="padding-left:20px;color:red"><h2>No Movies found in Public Playlist</h2></div>`
             } else {
                 data.publicPlaylists.forEach(element => {
                     addMovieToDOMPublic(element, element.Title, element.Director, element.Poster);
@@ -81,7 +81,7 @@ const handlePublic = (event) => {
             addMovieToDOMPublic(element, element.Title, element.Director, element.Poster);
         })
         if (data.privatePlaylists.length === 0) {
-            document.getElementById("privateData").innerHTML = `<div style="color:red"><h2>No Private Playlist found</h2></div>`
+            document.getElementById("privateData").innerHTML = `<div style="color:red"><h2>No Movies found in Private Playlist</h2></div>`
         } else {
             data.privatePlaylists.forEach(element => {
                 addMovieToDOMprivate(element, element.Title, element.Director, element.Poster)
