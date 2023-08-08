@@ -49,29 +49,30 @@ const addToPlaylist = async () => {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
         },
         body: JSON.stringify(movieData)
-    })
-    .then(data => {
-        if ( data.status == 400) {
-            alert("Movie already in Playlist");
- 
-        } 
-        else if(data.status == 401){
-            if(window.location.pathname=="/frontend/index.html" || window.location.pathname=="/frontend/pages/profile/index.html"){
-            alert("Login to add movie to playlist");
-            // window.location.href="./pages/login/index.html"
+    }).then(res => res.json())
+        .then(data => {
+            if (data.code == 400) {
+                alert("Movie already in Playlist");
+
             }
-        }
-        else if(data.status==201){
-            alert("Added to Playlist Successfully");
-            window.location.reload()
-        }
-        else{
-            alert("Something Went Wrong")
-        }
-    })
-    .catch(error => {
-        console.log(error);
-        alert("An error occurred while adding the movie to the playlist.");
-    });
+            else if (data.code == 401) {
+                if (!localStorage.getItem("username")) {
+                    alert("Login to add movie to playlist");
+
+                }
+
+            }
+            else if (data._id) {
+                alert("Added to Playlist Successfully");
+                window.location.reload()
+            }
+            else {
+                alert("Something Went Wrong")
+            }
+        })
+        .catch(error => {
+            console.log(error);
+            alert("An error occurred while adding the movie to the playlist.");
+        });
 };
 

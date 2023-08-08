@@ -15,37 +15,17 @@ const profile = [
 function createNavbar() {
     const navbarDiv = document.querySelector('.navbar');
     const navbarList = document.createElement('ul');
-    navbarList.classList.add('navbar-items'); // Add a class to style navbar items
-    if (window.location.pathname === "/frontend/index.html" || window.location.pathname === "/frontend/") {
-        if (localStorage.getItem("username")) {
-            profile.forEach(item => {
-                const listItem = document.createElement('li');
-                listItem.textContent = item.text;
-                listItem.setAttribute('id', item.id);
-                listItem.addEventListener('click', (e) => handleNavItemClick(e, listItem.id));
-                navbarList.appendChild(listItem);
-            });
-        } else {
-            navbarItems.forEach(item => {
-                const listItem = document.createElement('li');
-                listItem.textContent = item.text;
-                listItem.setAttribute('id', item.id);
-                listItem.addEventListener('click', (e) => handleNavItemClick(e, listItem.id));
-                navbarList.appendChild(listItem);
-            });
-        }
-
-    }
-    else if (window.location.pathname === "/frontend/pages/login/index.html" || window.location.pathname === "/frontend/pages/register/index.html") {
+    navbarList.classList.add('navbar-items'); 
+ if (window.location.pathname === "/pages/login/index.html" || window.location.pathname === "/pages/login/" || window.location.pathname === "/pages/register/index.html" || window.location.pathname === "/pages/register/") {
         navbarLogin.forEach(item => {
             const listItem = document.createElement('li');
             listItem.textContent = item.text;
             listItem.setAttribute('id', item.id);
             listItem.addEventListener('click', (e) => handleNavItemClick(e, listItem.id));
-            navbarList.appendChild(listItem);
+            navbarList.appendChild(listItem);   
         });
     }
-    else if (window.location.pathname === "/frontend/pages/profile/index.html" || window.location.pathname === "/frontend/pages/playlist/index.html") {
+    else if (window.location.pathname === "/pages/profile/index.html" || window.location.pathname === "/pages/playlist/index.html") {
         if (localStorage.getItem("username")) {
             profile.forEach(item => {
                 const listItem = document.createElement('li');
@@ -64,6 +44,25 @@ function createNavbar() {
             });
 
         }
+    }else{
+        if (localStorage.getItem("username")) {
+                profile.forEach(item => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = item.text;
+                    listItem.setAttribute('id', item.id);
+                    listItem.addEventListener('click', (e) => handleNavItemClick(e, listItem.id));
+                    navbarList.appendChild(listItem);
+                });
+            } 
+            else {
+                navbarItems.forEach(item => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = item.text;
+                    listItem.setAttribute('id', item.id);
+                    listItem.addEventListener('click', (e) => handleNavItemClick(e, listItem.id));
+                    navbarList.appendChild(listItem);
+                });
+            }
     }
     navbarDiv.appendChild(navbarList);
 }
@@ -71,21 +70,21 @@ function createNavbar() {
 
 const handleNavItemClick = (event, id) => {
 
-    if (id === "register" && window.location.pathname == "/frontend/pages/profile/index.html") {
+    if (id === "register" && window.location.pathname == "/pages/profile/index.html") {
         window.location.href = "../register/index.html"
     }
-    else if(id === "register" && window.location.pathname == "/frontend/pages/playlist/index.html"){
+    else if(id === "register" && window.location.pathname == "/pages/playlist/index.html"){
         window.location.href = "../register/index.html"
     }
     else if (id === "register") {
         window.location.href = "./pages/register/index.html"
     }
 
-    if (id === "login" && window.location.pathname == "/frontend/pages/profile/index.html") {
+    if (id === "login" && window.location.pathname == "/pages/profile/index.html") {
         console.log("JEHE")
         window.location.href = "../login/index.html"
     }
-    else if(id === "login" && window.location.pathname == "/frontend/pages/playlist/index.html"){
+    else if(id === "login" && window.location.pathname == "/pages/playlist/index.html"){
         window.location.href = "../login/index.html"
     }
     
@@ -100,7 +99,7 @@ const handleNavItemClick = (event, id) => {
         window.location.href = "../playlist/index.html"
     }
     
-     if( id == "logout" && window.location.pathname =="/frontend/pages/playlist/index.html"){
+     if( id == "logout" && window.location.pathname =="/pages/playlist/index.html"){
         window.localStorage.clear()
         window.location.href = "../../index.html"
      }

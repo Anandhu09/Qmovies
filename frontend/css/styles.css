@@ -302,6 +302,9 @@ h1 {
     .form {
         min-width: 24rem;
     }
+    .movie-card{
+        width:200px
+    }
 
 }
 

@@ -76,7 +76,6 @@ const handlePublic = (event) => {
         },
         body: JSON.stringify({ Id: event.target.id })
     }).then((res) => res.json()).then((data) => {
-        // if(!data.publicPlaylists){}
         data.publicPlaylists.forEach(element => {
             addMovieToDOMPublic(element, element.Title, element.Director, element.Poster);
         })
