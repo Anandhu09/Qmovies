@@ -37,9 +37,8 @@ const addMovieToPlaylist = async (user, body) => {
   if (movie.privatePlaylists.some((item) => item.Title === body.Title)) {
     throw new ApiError(httpStatus.BAD_REQUEST, "Movie already in private playlist.")
   }
-// console.log(movie.publicPlaylists.push(body),"heyyamma")
   movie.publicPlaylists.push(body)
-  console.log(movie,"llllaaaalll")
+
   await movie.save();
   return movie;
 

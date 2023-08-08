@@ -56,9 +56,10 @@ const addToPlaylist = async () => {
  
         } 
         else if(data.status == 401){
-
+            if(window.location.pathname=="/frontend/index.html" || window.location.pathname=="/frontend/pages/profile/index.html"){
             alert("Login to add movie to playlist");
-            window.location.href="/frontend/login.html"
+            // window.location.href="./pages/login/index.html"
+            }
         }
         else if(data.status==201){
             alert("Added to Playlist Successfully");

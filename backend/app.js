@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const routes = require("./routes/v1");
 const { jwtStrategy } = require("./middlewares/passport");
-// const { errorHandler } = require("./middlewares/error");
+const { errorHandler } = require("./middlewares/error");
 const passport = require("passport");
 const app = express();
 
@@ -21,6 +21,6 @@ app.use((req, res, next) => {
     next(new ApiError(httpStatus.NOT_FOUND, "Not found"));
 });
 
-// app.use(errorHandler);
+app.use(errorHandler);
 
 module.exports = app;

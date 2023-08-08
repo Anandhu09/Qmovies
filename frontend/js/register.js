@@ -22,18 +22,18 @@ form.addEventListener('submit', (event) => {
     })
         .then(response => response.json())
         .then(data => {
-            console.log("HI")
             if (data.user) {
                 alert("Registered Successfully");
-                window.location.href="./login.html"
+                window.location.href="../login/index.html"
             }else{
                 alert(data.message)
-                window.location.reload()
+                // window.location.reload()
             }
         })
         .catch(error => {
             alert(error.message)
-            window.location.reload()
+            console.log(error)
+            // window.location.reload()
         });
 });
 

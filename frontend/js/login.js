@@ -18,10 +18,11 @@ form.addEventListener('submit', (event) => {
     .then(data => {
         if(data.message){
             alert(data.message)
-        }
+        }   
         else{
+            console.log(data.user,"user")
         persistLogin(data.user.name, data.tokens.access.token , data.user.email)
-        window.location.href ="profile.html"
+        window.location.href ="../../pages/profile/index.html"
         alert("Login Successful")
         }
     })
